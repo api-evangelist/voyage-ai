@@ -1,0 +1,277 @@
+openapi: 3.1.0
+info:
+  title: Voyage AI API
+  version: "1.0.0"
+  summary: Embeddings, multimodal embeddings, contextualized embeddings, and reranking from Voyage AI.
+  description: |
+    OpenAI-compatible REST API for Voyage AI embedding and reranker models used in
+    retrieval-augmented generation (RAG) and semantic search workflows.
+
+    Documentation: https://docs.voyageai.com/reference/embeddings-api
+  contact:
+    name: Voyage AI Docs
+    url: https://docs.voyageai.com/
+servers:
+  - url: https://api.voyageai.com/v1
+    description: Voyage AI production API
+security:
+  - bearerAuth: []
+tags:
+  - name: Embeddings
+    description: Dense text embeddings.
+  - name: Rerank
+    description: Cross-encoder reranking of candidate documents.
+  - name: Multimodal
+    description: Embed interleaved text and images in a shared vector space.
+  - name: Contextualized
+    description: Embed chunks conditioned on surrounding document context.
+paths:
+  /embeddings:
+    post:
+      tags: [Embeddings]
+      summary: Create text embeddings
+      operationId: createEmbeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbeddingsRequest'
+      responses:
+        "200":
+          description: Embeddings response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingsResponse'
+        "401": { $ref: '#/components/responses/Unauthorized' }
+        "429": { $ref: '#/components/responses/RateLimited' }
+  /rerank:
+    post:
+      tags: [Rerank]
+      summary: Rerank documents against a query
+      operationId: rerank
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RerankRequest'
+      responses:
+        "200":
+          description: Reranked results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RerankResponse'
+        "401": { $ref: '#/components/responses/Unauthorized' }
+  /multimodalembeddings:
+    post:
+      tags: [Multimodal]
+      summary: Create multimodal embeddings (text + images)
+      operationId: createMultimodalEmbeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultimodalEmbeddingsRequest'
+      responses:
+        "200":
+          description: Multimodal embeddings response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingsResponse'
+  /contextualizedembeddings:
+    post:
+      tags: [Contextualized]
+      summary: Create contextualized chunk embeddings
+      operationId: createContextualizedEmbeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContextualizedEmbeddingsRequest'
+      responses:
+        "200":
+          description: Contextualized embeddings response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingsResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key
+      description: Voyage AI API key sent as `Authorization: Bearer <key>`.
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    EmbeddingsRequest:
+      type: object
+      required: [input, model]
+      properties:
+        input:
+          oneOf:
+            - type: string
+            - type: array
+              items: { type: string }
+              maxItems: 1000
+          description: A single string or list of strings (max 1000) to embed.
+        model:
+          type: string
+          examples: [voyage-3.5, voyage-3-large, voyage-code-3, voyage-finance-2, voyage-law-2, voyage-4, voyage-4-large, voyage-4-lite]
+        input_type:
+          type: string
+          enum: [query, document]
+          description: Optimization hint for downstream retrieval use.
+        truncation:
+          type: boolean
+          default: true
+        output_dimension:
+          type: integer
+          enum: [256, 512, 1024, 2048]
+        output_dtype:
+          type: string
+          enum: [float, int8, uint8, binary, ubinary]
+          default: float
+        encoding_format:
+          type: string
+          enum: [base64]
+    RerankRequest:
+      type: object
+      required: [query, documents, model]
+      properties:
+        query: { type: string }
+        documents:
+          type: array
+          items: { type: string }
+          maxItems: 1000
+        model:
+          type: string
+          examples: [rerank-2.5, rerank-2.5-lite, voyage-rerank-2]
+        top_k:
+          type: integer
+          minimum: 1
+        return_documents:
+          type: boolean
+          default: false
+        truncation:
+          type: boolean
+          default: true
+    RerankResponse:
+      type: object
+      properties:
+        object: { type: string, examples: [list] }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              index: { type: integer }
+              relevance_score: { type: number }
+              document: { type: string }
+        model: { type: string }
+        usage:
+          $ref: '#/components/schemas/Usage'
+    MultimodalEmbeddingsRequest:
+      type: object
+      required: [inputs, model]
+      properties:
+        inputs:
+          type: array
+          maxItems: 1000
+          items:
+            type: object
+            properties:
+              content:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [text, image_url, image_base64]
+                    text: { type: string }
+                    image_url: { type: string, format: uri }
+                    image_base64: { type: string, contentEncoding: base64 }
+        model:
+          type: string
+          examples: [voyage-multimodal-3, voyage-multimodal-3.5]
+        input_type:
+          type: string
+          enum: [query, document]
+        truncation:
+          type: boolean
+          default: true
+        output_encoding:
+          type: string
+          enum: [base64]
+    ContextualizedEmbeddingsRequest:
+      type: object
+      required: [inputs, model]
+      properties:
+        inputs:
+          type: array
+          description: List of lists; each inner list is a query, document, or set of chunks.
+          items:
+            type: array
+            items: { type: string }
+        model:
+          type: string
+          examples: [voyage-context-3]
+        input_type:
+          type: string
+          enum: [query, document]
+        output_dimension:
+          type: integer
+          enum: [256, 512, 1024, 2048]
+        output_dtype:
+          type: string
+          enum: [float, int8, uint8, binary, ubinary]
+        encoding_format:
+          type: string
+          enum: [base64]
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object: { type: string, examples: [list] }
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object: { type: string, examples: [embedding] }
+              index: { type: integer }
+              embedding:
+                oneOf:
+                  - type: array
+                    items: { type: number }
+                  - type: string
+                    description: Base64-encoded vector when `encoding_format=base64`.
+        model: { type: string }
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens: { type: integer }
+    Error:
+      type: object
+      properties:
+        detail: { type: string }
