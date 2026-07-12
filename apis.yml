@@ -123,6 +123,8 @@ apis:
       - type: Repository
         url: https://github.com/voyage-ai/typescript-sdk
 common:
+  - type: DomainSecurity
+    url: security/voyage-ai-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/voyage-ai
   - type: Website
@@ -141,6 +143,8 @@ common:
     url: rate-limits/voyage-ai-rate-limits.yml
   - type: FinOps
     url: finops/voyage-ai-finops.yml
+  - url: https://blog.voyageai.com/feed
+    type: Blog
 integrations:
   - name: MongoDB Atlas Vector Search
   - name: AWS Marketplace
