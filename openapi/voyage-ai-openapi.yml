@@ -107,7 +107,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: API key
-      description: Voyage AI API key sent as `Authorization: Bearer <key>`.
+      description: "Voyage AI API key sent as `Authorization: Bearer <key>`."
   responses:
     Unauthorized:
       description: Missing or invalid API key
