@@ -38,103 +38,129 @@ created: '2026-05-23'
 modified: '2026-05-23'
 specificationVersion: '0.19'
 apis:
-  - aid: voyage-ai:embeddings
-    name: Voyage AI Embeddings API
-    description: >-
-      OpenAI-compatible REST endpoint that returns dense vector embeddings for
-      input text. Supports model selection (voyage-3.5, voyage-3-large,
-      voyage-code-3, voyage-finance-2, voyage-law-2, voyage-4 family),
-      configurable output dimensions (256, 512, 1024, 2048), output dtype
-      (float, int8, uint8, binary, ubinary), input_type hints (query or
-      document), and batch sizes up to 1000 inputs per request.
-    humanURL: https://docs.voyageai.com/reference/embeddings-api
-    baseURL: https://api.voyageai.com/v1
-    tags:
-      - Embeddings
-      - Text
-      - REST
-    properties:
-      - type: Documentation
-        url: https://docs.voyageai.com/reference/embeddings-api
-      - type: OpenAPI
-        url: https://docs.voyageai.com/llms.txt
-  - aid: voyage-ai:rerank
-    name: Voyage AI Rerank API
-    description: >-
-      Reranking endpoint that scores a list of candidate documents against a
-      query and returns relevance scores. Powered by the voyage-rerank-2 model
-      family, used downstream of vector search to improve retrieval precision
-      in RAG pipelines.
-    humanURL: https://docs.voyageai.com/reference/reranker-api
-    baseURL: https://api.voyageai.com/v1
-    tags:
-      - Rerank
-      - Retrieval
-      - RAG
-    properties:
-      - type: Documentation
-        url: https://docs.voyageai.com/reference/reranker-api
-  - aid: voyage-ai:multimodal-embeddings
-    name: Voyage AI Multimodal Embeddings API
-    description: >-
-      Multimodal embeddings endpoint backed by voyage-multimodal-3 that accepts
-      interleaved text and images in a single request and returns embeddings in
-      a shared vector space, enabling cross-modal retrieval for documents that
-      mix text, screenshots, charts, and figures.
-    humanURL: https://docs.voyageai.com/reference/multimodal-embeddings-api
-    baseURL: https://api.voyageai.com/v1
-    tags:
-      - Embeddings
-      - Multimodal
-      - Vision
-    properties:
-      - type: Documentation
-        url: https://docs.voyageai.com/reference/multimodal-embeddings-api
-  - aid: voyage-ai:contextualized-embeddings
-    name: Voyage AI Contextualized Embeddings API
-    description: >-
-      Endpoint that embeds chunks while conditioning on surrounding document
-      context, improving recall for long-document RAG workflows where chunk
-      embeddings would otherwise lose document-level signal.
-    humanURL: https://docs.voyageai.com/reference/contextualized-embeddings-api
-    baseURL: https://api.voyageai.com/v1
-    tags:
-      - Embeddings
-      - Contextualized
-      - RAG
-    properties:
-      - type: Documentation
-        url: https://docs.voyageai.com/reference/contextualized-embeddings-api
-  - aid: voyage-ai:python-sdk
-    name: Voyage AI Python SDK
-    description: >-
-      Official Python client (voyageai) wrapping the embeddings, multimodal,
-      contextualized, and reranking endpoints with batching, retries, and
-      async support.
-    humanURL: https://github.com/voyage-ai/voyageai-python
-    baseURL: https://github.com/voyage-ai/voyageai-python
-    tags:
-      - SDK
-      - Python
-    properties:
-      - type: Repository
-        url: https://github.com/voyage-ai/voyageai-python
-      - type: Package
-        url: https://pypi.org/project/voyageai/
-  - aid: voyage-ai:typescript-sdk
-    name: Voyage AI TypeScript SDK
-    description: >-
-      Official TypeScript / JavaScript client for the Voyage AI REST API.
-    humanURL: https://github.com/voyage-ai/typescript-sdk
-    baseURL: https://github.com/voyage-ai/typescript-sdk
-    tags:
-      - SDK
-      - TypeScript
-      - JavaScript
-    properties:
-      - type: Repository
-        url: https://github.com/voyage-ai/typescript-sdk
+- aid: voyage-ai:rerank
+  name: Voyage AI Rerank API
+  description: >-
+    Reranking endpoint that scores a list of candidate documents against a query and returns relevance
+    scores. Powered by the voyage-rerank-2 model family, used downstream of vector search to improve retrieval
+    precision in RAG pipelines.
+  humanURL: https://docs.voyageai.com/reference/reranker-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Rerank
+  - Retrieval
+  - RAG
+  properties:
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/reranker-api
+- aid: voyage-ai:multimodal-embeddings
+  name: Voyage AI Multimodal Embeddings API
+  description: >-
+    Multimodal embeddings endpoint backed by voyage-multimodal-3 that accepts interleaved text and images
+    in a single request and returns embeddings in a shared vector space, enabling cross-modal retrieval
+    for documents that mix text, screenshots, charts, and figures.
+  humanURL: https://docs.voyageai.com/reference/multimodal-embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Embeddings
+  - Multimodal
+  - Vision
+  properties:
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/multimodal-embeddings-api
+- aid: voyage-ai:contextualized-embeddings
+  name: Voyage AI Contextualized Embeddings API
+  description: >-
+    Endpoint that embeds chunks while conditioning on surrounding document context, improving recall for
+    long-document RAG workflows where chunk embeddings would otherwise lose document-level signal.
+  humanURL: https://docs.voyageai.com/reference/contextualized-embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Embeddings
+  - Contextualized
+  - RAG
+  properties:
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/contextualized-embeddings-api
+- aid: voyage-ai:python-sdk
+  name: Voyage AI Python SDK
+  description: >-
+    Official Python client (voyageai) wrapping the embeddings, multimodal, contextualized, and reranking
+    endpoints with batching, retries, and async support.
+  humanURL: https://github.com/voyage-ai/voyageai-python
+  baseURL: https://github.com/voyage-ai/voyageai-python
+  tags:
+  - SDK
+  - Python
+  properties:
+  - type: Repository
+    url: https://github.com/voyage-ai/voyageai-python
+  - type: Package
+    url: https://pypi.org/project/voyageai/
+- aid: voyage-ai:typescript-sdk
+  name: Voyage AI TypeScript SDK
+  description: Official TypeScript / JavaScript client for the Voyage AI REST API.
+  humanURL: https://github.com/voyage-ai/typescript-sdk
+  baseURL: https://github.com/voyage-ai/typescript-sdk
+  tags:
+  - SDK
+  - TypeScript
+  - JavaScript
+  properties:
+  - type: Repository
+    url: https://github.com/voyage-ai/typescript-sdk
+- aid: voyage-ai:voyage-ai-contextualized-api
+  name: Voyage AI Contextualized API
+  description: Embed chunks conditioned on surrounding document context.
+  humanURL: https://docs.voyageai.com/reference/embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Contextualized
+  properties:
+  - type: OpenAPI
+    url: openapi/voyage-ai-contextualized-api-openapi.yml
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/embeddings-api
+- aid: voyage-ai:voyage-ai-embeddings-api
+  name: Voyage AI Embeddings API
+  description: Dense text embeddings.
+  humanURL: https://docs.voyageai.com/reference/embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Embeddings
+  properties:
+  - type: OpenAPI
+    url: openapi/voyage-ai-embeddings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/embeddings-api
+- aid: voyage-ai:voyage-ai-multimodal-api
+  name: Voyage AI Multimodal API
+  description: Embed interleaved text and images in a shared vector space.
+  humanURL: https://docs.voyageai.com/reference/embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Multimodal
+  properties:
+  - type: OpenAPI
+    url: openapi/voyage-ai-multimodal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/embeddings-api
+- aid: voyage-ai:voyage-ai-rerank-api
+  name: Voyage AI Rerank API
+  description: Cross-encoder reranking of candidate documents.
+  humanURL: https://docs.voyageai.com/reference/embeddings-api
+  baseURL: https://api.voyageai.com/v1
+  tags:
+  - Rerank
+  properties:
+  - type: OpenAPI
+    url: openapi/voyage-ai-rerank-api-openapi.yml
+  - type: Documentation
+    url: https://docs.voyageai.com/reference/embeddings-api
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/voyage-ai/voyageai-python/blob/main/LICENSE
   - type: DomainSecurity
     url: security/voyage-ai-domain-security.yml
   - type: LinkedIn
