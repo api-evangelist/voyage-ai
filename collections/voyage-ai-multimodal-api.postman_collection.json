@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "f456f6a4-438a-4867-8595-3ad7a8490e30",
+      "name": "Multimodal",
+      "description": {
+        "content": "Embed interleaved text and images in a shared vector space.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bdc89ec0-4be4-45be-93a2-44ba01d402da",
+          "name": "Create multimodal embeddings (text + images)",
+          "request": {
+            "name": "Create multimodal embeddings (text + images)",
+            "description": {},
+            "url": {
+              "path": [
+                "multimodalembeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inputs\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_encoding\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2aa2f2fd-3781-4e50-9499-c00ade4e95c5",
+              "name": "Multimodal embeddings response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "multimodalembeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"inputs\": [\n    {\n      \"content\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"content\": [\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"text\": \"<string>\",\n          \"image_url\": \"<uri>\",\n          \"image_base64\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_encoding\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"index\": 3787,\n      \"embedding\": [\n        5260.289665126819,\n        9522.158202705006\n      ]\n    },\n    {\n      \"object\": \"string\",\n      \"index\": 4563,\n      \"embedding\": [\n        7468.590425742517,\n        7318.321535888431\n      ]\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"total_tokens\": 5543\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.voyageai.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7cc60813-774b-4825-aa44-309b683d3c32",
+    "name": "Voyage AI Multimodal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAI-compatible REST API for Voyage AI embedding and reranker models used in\nretrieval-augmented generation (RAG) and semantic search workflows.\n\nDocumentation: https://docs.voyageai.com/reference/embeddings-api\n\n\nContact Support:\n Name: Voyage AI Docs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voyage AI Multimodal API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multimodal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create multimodal embeddings (text + images)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.voyageai.com/v1/multimodalembeddings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multimodal embeddings (text + images)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

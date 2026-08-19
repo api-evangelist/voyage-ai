@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "2346ec8e-b4c6-4f1e-a0a9-d599981ca756",
+      "name": "Embeddings",
+      "description": {
+        "content": "Dense text embeddings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0673a16c-4b55-4e92-8df3-f6291679478a",
+          "name": "Create text embeddings",
+          "request": {
+            "name": "Create text embeddings",
+            "description": {},
+            "url": {
+              "path": [
+                "embeddings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_dimension\": \"<integer>\",\n  \"output_dtype\": \"float\",\n  \"encoding_format\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "149fa5ef-da88-4d89-aba4-713f0d6481ed",
+              "name": "Embeddings response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "embeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_dimension\": \"<integer>\",\n  \"output_dtype\": \"float\",\n  \"encoding_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"object\": \"string\",\n      \"index\": 3609,\n      \"embedding\": [\n        7111.383697911489,\n        3186.5810166982255\n      ]\n    },\n    {\n      \"object\": \"string\",\n      \"index\": 2980,\n      \"embedding\": [\n        7887.090469314051,\n        429.0562433426004\n      ]\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"total_tokens\": 4895\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "944619ac-cf85-4a2a-9388-3c0fc023daa5",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "embeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_dimension\": \"<integer>\",\n  \"output_dtype\": \"float\",\n  \"encoding_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f742b51e-2a68-4224-842a-58b009ea7e05",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "embeddings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"input\": \"<string>\",\n  \"model\": \"<string>\",\n  \"input_type\": \"<string>\",\n  \"truncation\": true,\n  \"output_dimension\": \"<integer>\",\n  \"output_dtype\": \"float\",\n  \"encoding_format\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.voyageai.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00826f5e-c574-48b5-9844-a9d2c65912c1",
+    "name": "Voyage AI Embeddings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAI-compatible REST API for Voyage AI embedding and reranker models used in\nretrieval-augmented generation (RAG) and semantic search workflows.\n\nDocumentation: https://docs.voyageai.com/reference/embeddings-api\n\n\nContact Support:\n Name: Voyage AI Docs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Voyage AI Contextualized API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contextualized",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create contextualized chunk embeddings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.voyageai.com/v1/contextualizedembeddings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create contextualized chunk embeddings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

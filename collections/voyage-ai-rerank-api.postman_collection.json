@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "cb3f5012-7be1-438a-b1d6-6bb365b68cd5",
+      "name": "Rerank",
+      "description": {
+        "content": "Cross-encoder reranking of candidate documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "33af4e7c-f6cf-4c01-a6b7-5c36c242ac7c",
+          "name": "Rerank documents against a query",
+          "request": {
+            "name": "Rerank documents against a query",
+            "description": {},
+            "url": {
+              "path": [
+                "rerank"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"documents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"return_documents\": false,\n  \"truncation\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78d5ac2f-744e-4583-aa3b-9994b04ed04c",
+              "name": "Reranked results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rerank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"documents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"return_documents\": false,\n  \"truncation\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"string\",\n  \"data\": [\n    {\n      \"index\": 9277,\n      \"relevance_score\": 8466.395034009214,\n      \"document\": \"string\"\n    },\n    {\n      \"index\": 855,\n      \"relevance_score\": 9722.151480625571,\n      \"document\": \"string\"\n    }\n  ],\n  \"model\": \"string\",\n  \"usage\": {\n    \"total_tokens\": 9548\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b7c5874-f258-4db0-9a67-c2282bfa9492",
+              "name": "Missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rerank"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"documents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"model\": \"<string>\",\n  \"top_k\": \"<integer>\",\n  \"return_documents\": false,\n  \"truncation\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.voyageai.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "75e28766-b67a-424d-b3a2-58bbbe6ddd36",
+    "name": "Voyage AI Rerank API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAI-compatible REST API for Voyage AI embedding and reranker models used in\nretrieval-augmented generation (RAG) and semantic search workflows.\n\nDocumentation: https://docs.voyageai.com/reference/embeddings-api\n\n\nContact Support:\n Name: Voyage AI Docs",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: Voyage AI Contextualized API
+  version: 1.0.0
+  summary: Embeddings, multimodal embeddings, contextualized embeddings, and reranking from Voyage AI.
+  description: 'OpenAI-compatible REST API for Voyage AI embedding and reranker models used in
+
+    retrieval-augmented generation (RAG) and semantic search workflows.
+
+
+    Documentation: https://docs.voyageai.com/reference/embeddings-api
+
+    '
+  contact:
+    name: Voyage AI Docs
+    url: https://docs.voyageai.com/
+servers:
+- url: https://api.voyageai.com/v1
+  description: Voyage AI production API
+security:
+- bearerAuth: []
+tags:
+- name: Contextualized
+  description: Embed chunks conditioned on surrounding document context.
+paths:
+  /contextualizedembeddings:
+    post:
+      tags:
+      - Contextualized
+      summary: Create contextualized chunk embeddings
+      operationId: createContextualizedEmbeddings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContextualizedEmbeddingsRequest'
+      responses:
+        '200':
+          description: Contextualized embeddings response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingsResponse'
+components:
+  schemas:
+    ContextualizedEmbeddingsRequest:
+      type: object
+      required:
+      - inputs
+      - model
+      properties:
+        inputs:
+          type: array
+          description: List of lists; each inner list is a query, document, or set of chunks.
+          items:
+            type: array
+            items:
+              type: string
+        model:
+          type: string
+          examples:
+          - voyage-context-3
+        input_type:
+          type: string
+          enum:
+          - query
+          - document
+        output_dimension:
+          type: integer
+          enum:
+          - 256
+          - 512
+          - 1024
+          - 2048
+        output_dtype:
+          type: string
+          enum:
+          - float
+          - int8
+          - uint8
+          - binary
+          - ubinary
+        encoding_format:
+          type: string
+          enum:
+          - base64
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                examples:
+                - embedding
+              index:
+                type: integer
+              embedding:
+                oneOf:
+                - type: array
+                  items:
+                    type: number
+                - type: string
+                  description: Base64-encoded vector when `encoding_format=base64`.
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key
+      description: 'Voyage AI API key sent as `Authorization: Bearer <key>`.'

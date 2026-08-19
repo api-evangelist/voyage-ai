@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  title: Voyage AI Rerank API
+  version: 1.0.0
+  summary: Embeddings, multimodal embeddings, contextualized embeddings, and reranking from Voyage AI.
+  description: 'OpenAI-compatible REST API for Voyage AI embedding and reranker models used in
+
+    retrieval-augmented generation (RAG) and semantic search workflows.
+
+
+    Documentation: https://docs.voyageai.com/reference/embeddings-api
+
+    '
+  contact:
+    name: Voyage AI Docs
+    url: https://docs.voyageai.com/
+servers:
+- url: https://api.voyageai.com/v1
+  description: Voyage AI production API
+security:
+- bearerAuth: []
+tags:
+- name: Rerank
+  description: Cross-encoder reranking of candidate documents.
+paths:
+  /rerank:
+    post:
+      tags:
+      - Rerank
+      summary: Rerank documents against a query
+      operationId: rerank
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RerankRequest'
+      responses:
+        '200':
+          description: Reranked results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RerankResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RerankRequest:
+      type: object
+      required:
+      - query
+      - documents
+      - model
+      properties:
+        query:
+          type: string
+        documents:
+          type: array
+          items:
+            type: string
+          maxItems: 1000
+        model:
+          type: string
+          examples:
+          - rerank-2.5
+          - rerank-2.5-lite
+          - voyage-rerank-2
+        top_k:
+          type: integer
+          minimum: 1
+        return_documents:
+          type: boolean
+          default: false
+        truncation:
+          type: boolean
+          default: true
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+    RerankResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              relevance_score:
+                type: number
+              document:
+                type: string
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key
+      description: 'Voyage AI API key sent as `Authorization: Bearer <key>`.'
