@@ -33,6 +33,14 @@ tags:
   - Semantic Search
   - AI Models
   - Vector Search
+  - Multi-Modal
+tags_raw:
+  - Embeddings
+  - Rerankers
+  - RAG
+  - Semantic Search
+  - AI Models
+  - Vector Search
   - Multimodal
 created: '2026-05-23'
 modified: '2026-05-23'
@@ -62,6 +70,10 @@ apis:
   humanURL: https://docs.voyageai.com/reference/multimodal-embeddings-api
   baseURL: https://api.voyageai.com/v1
   tags:
+  - Embeddings
+  - Multi-Modal
+  - Vision
+  tags_raw:
   - Embeddings
   - Multimodal
   - Vision
@@ -139,6 +151,8 @@ apis:
   humanURL: https://docs.voyageai.com/reference/embeddings-api
   baseURL: https://api.voyageai.com/v1
   tags:
+  - Multi-Modal
+  tags_raw:
   - Multimodal
   properties:
   - type: OpenAPI
