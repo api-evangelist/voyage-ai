@@ -13,6 +13,20 @@ description: >-
   Voyage AI was acquired by MongoDB in February 2024 and is integrated into
   MongoDB Atlas Vector Search; models are also distributed via AWS Marketplace,
   Azure Marketplace, and Snowflake.
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
@@ -172,6 +186,10 @@ apis:
   - type: Documentation
     url: https://docs.voyageai.com/reference/embeddings-api
 common:
+  - type: IssueTracker
+    url: https://github.com/voyage-ai/voyageai-python/issues
+  - type: Releases
+    url: https://github.com/voyage-ai/voyageai-python/releases
   - type: License
     name: MIT
     url: https://github.com/voyage-ai/voyageai-python/blob/main/LICENSE
