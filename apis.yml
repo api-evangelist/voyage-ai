@@ -47,7 +47,7 @@ tags:
   - Semantic Search
   - AI Models
   - Vector Search
-  - Multimodal
+  - Multi-Modal
 tags_raw:
   - Embeddings
   - Rerankers
@@ -85,7 +85,7 @@ apis:
   baseURL: https://api.voyageai.com/v1
   tags:
   - Embeddings
-  - Multimodal
+  - Multi-Modal
   - Vision
   tags_raw:
   - Embeddings
@@ -165,7 +165,7 @@ apis:
   humanURL: https://docs.voyageai.com/reference/embeddings-api
   baseURL: https://api.voyageai.com/v1
   tags:
-  - Multimodal
+  - Multi-Modal
   tags_raw:
   - Multimodal
   properties:
