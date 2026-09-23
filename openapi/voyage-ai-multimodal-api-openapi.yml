@@ -8,9 +8,7 @@ info:
     retrieval-augmented generation (RAG) and semantic search workflows.
 
 
-    Documentation: https://docs.voyageai.com/reference/embeddings-api
-
-    '
+    Documentation: https://docs.voyageai.com/reference/embeddings-api'
   contact:
     name: Voyage AI Docs
     url: https://docs.voyageai.com/
@@ -44,35 +42,6 @@ paths:
                 $ref: '#/components/schemas/EmbeddingsResponse'
 components:
   schemas:
-    EmbeddingsResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          examples:
-          - list
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              object:
-                type: string
-                examples:
-                - embedding
-              index:
-                type: integer
-              embedding:
-                oneOf:
-                - type: array
-                  items:
-                    type: number
-                - type: string
-                  description: Base64-encoded vector when `encoding_format=base64`.
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
     MultimodalEmbeddingsRequest:
       type: object
       required:
@@ -121,6 +90,35 @@ components:
           type: string
           enum:
           - base64
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                examples:
+                - embedding
+              index:
+                type: integer
+              embedding:
+                oneOf:
+                - type: array
+                  items:
+                    type: number
+                - type: string
+                  description: Base64-encoded vector when `encoding_format=base64`.
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
     Usage:
       type: object
       properties:

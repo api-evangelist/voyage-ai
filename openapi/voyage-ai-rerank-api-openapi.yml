@@ -8,9 +8,7 @@ info:
     retrieval-augmented generation (RAG) and semantic search workflows.
 
 
-    Documentation: https://docs.voyageai.com/reference/embeddings-api
-
-    '
+    Documentation: https://docs.voyageai.com/reference/embeddings-api'
   contact:
     name: Voyage AI Docs
     url: https://docs.voyageai.com/
@@ -46,6 +44,38 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    RerankResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              relevance_score:
+                type: number
+              document:
+                type: string
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
     RerankRequest:
       type: object
       required:
@@ -75,38 +105,6 @@ components:
         truncation:
           type: boolean
           default: true
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-    RerankResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          examples:
-          - list
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-              relevance_score:
-                type: number
-              document:
-                type: string
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
   responses:
     Unauthorized:
       description: Missing or invalid API key

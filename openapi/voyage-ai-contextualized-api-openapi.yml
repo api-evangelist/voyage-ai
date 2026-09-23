@@ -8,9 +8,7 @@ info:
     retrieval-augmented generation (RAG) and semantic search workflows.
 
 
-    Documentation: https://docs.voyageai.com/reference/embeddings-api
-
-    '
+    Documentation: https://docs.voyageai.com/reference/embeddings-api'
   contact:
     name: Voyage AI Docs
     url: https://docs.voyageai.com/

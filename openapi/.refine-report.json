@@ -1,10 +1,7 @@
 {
   "provider": "voyage-ai",
   "sources": [
-    "voyage-ai-contextualized-api-openapi.yml",
-    "voyage-ai-embeddings-api-openapi.yml",
-    "voyage-ai-multimodal-api-openapi.yml",
-    "voyage-ai-rerank-api-openapi.yml"
+    "_original/voyage-ai-openapi.yml"
   ],
   "outputs": [
     "voyage-ai-contextualized-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "voyage-ai-contextualized-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "voyage-ai-embeddings-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "voyage-ai-multimodal-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "voyage-ai-rerank-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "voyage-ai-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "voyage-ai-contextualized-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voyage-ai-embeddings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voyage-ai-multimodal-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "voyage-ai-rerank-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
