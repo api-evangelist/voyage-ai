@@ -64,11 +64,6 @@ components:
       properties:
         detail:
           type: string
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
     EmbeddingsRequest:
       type: object
       required:
@@ -152,6 +147,11 @@ components:
           type: string
         usage:
           $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http
