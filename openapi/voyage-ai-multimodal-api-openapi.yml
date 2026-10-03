@@ -42,35 +42,6 @@ paths:
                 $ref: '#/components/schemas/EmbeddingsResponse'
 components:
   schemas:
-    EmbeddingsResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          examples:
-          - list
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              object:
-                type: string
-                examples:
-                - embedding
-              index:
-                type: integer
-              embedding:
-                oneOf:
-                - type: array
-                  items:
-                    type: number
-                - type: string
-                  description: Base64-encoded vector when `encoding_format=base64`.
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
     MultimodalEmbeddingsRequest:
       type: object
       required:
@@ -124,6 +95,35 @@ components:
       properties:
         total_tokens:
           type: integer
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                examples:
+                - embedding
+              index:
+                type: integer
+              embedding:
+                oneOf:
+                - type: array
+                  items:
+                    type: number
+                - type: string
+                  description: Base64-encoded vector when `encoding_format=base64`.
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
   securitySchemes:
     bearerAuth:
       type: http

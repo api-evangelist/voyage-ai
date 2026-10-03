@@ -45,25 +45,17 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    RateLimited:
-      description: Rate limit exceeded
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
       properties:
         detail:
           type: string
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
     EmbeddingsRequest:
       type: object
       required:
@@ -147,11 +139,19 @@ components:
           type: string
         usage:
           $ref: '#/components/schemas/Usage'
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
+  responses:
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
