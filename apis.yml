@@ -186,6 +186,9 @@ apis:
   - type: Documentation
     url: https://docs.voyageai.com/reference/embeddings-api
 common:
+  - type: CapabilityMap
+    url: capabilities/voyage-ai-capability-edges.yml
+    name: Voyage AI Business Capability Map
   - type: IssueTracker
     url: https://github.com/voyage-ai/voyageai-python/issues
   - type: Releases

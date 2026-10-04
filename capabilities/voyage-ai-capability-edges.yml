@@ -1,0 +1,44 @@
+slug: voyage-ai
+provider: Voyage AI
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Contextualized
+  spec_file: voyage-ai-contextualized-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /contextualizedembeddings  "Create contextualized chunk embeddings"; "REST API for Voyage
+    AI embedding and reranker models used in retrieval-augmented generation (RAG) and semantic search
+    workflows"
+  reason: Model inference endpoint producing embeddings for RAG/semantic search. The honest mapping for
+    an AI model-serving devtool is Artificial Intelligence Management; it is inference rather than full
+    model lifecycle, hence moderate confidence.
+- tag: Embeddings
+  spec_file: voyage-ai-embeddings-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /embeddings  createEmbeddings  "Create text embeddings"
+  reason: Text embedding model inference used for retrieval and semantic search; falls under AI/ML capability
+    in Information & Data Management. No industry-specific business process is realised.
+- tag: Multimodal
+  spec_file: voyage-ai-multimodal-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /multimodalembeddings  "Create multimodal embeddings (text + images)"
+  reason: Multimodal embedding model inference — AI model capability, not a domain business process.
