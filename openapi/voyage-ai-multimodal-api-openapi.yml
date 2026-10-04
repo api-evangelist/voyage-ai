@@ -42,6 +42,11 @@ paths:
                 $ref: '#/components/schemas/EmbeddingsResponse'
 components:
   schemas:
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
     MultimodalEmbeddingsRequest:
       type: object
       required:
@@ -90,11 +95,6 @@ components:
           type: string
           enum:
           - base64
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
     EmbeddingsResponse:
       type: object
       properties:

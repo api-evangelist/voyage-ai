@@ -44,11 +44,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
     RerankRequest:
       type: object
       required:
@@ -83,6 +78,11 @@ components:
       properties:
         total_tokens:
           type: integer
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
     RerankResponse:
       type: object
       properties:
