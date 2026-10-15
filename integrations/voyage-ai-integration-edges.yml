@@ -54,8 +54,31 @@ edges:
     detected: '2026-10-13'
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: LlamaIndex
+  partner: llamaindex
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/embeddings/llama-index-embeddings-voyageai
+  coverage_role:
+  - embeddings
+  - reranker
+  framework_signals:
+    packages:
+    - llama-index-embeddings-voyageai
+    - llama-index-postprocessor-voyageai-rerank
+    roles:
+    - embeddings
+    - reranker
+    vendor_domain: voyageai.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
 generated: '2026-10-13'
 method: searched
 checked:
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
 - https://github.com/Portkey-AI/gateway/tree/main/src/providers
+- https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
