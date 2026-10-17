@@ -44,6 +44,38 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
+    RerankResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              relevance_score:
+                type: number
+              document:
+                type: string
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
     RerankRequest:
       type: object
       required:
@@ -73,38 +105,6 @@ components:
         truncation:
           type: boolean
           default: true
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-    RerankResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          examples:
-          - list
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-              relevance_score:
-                type: number
-              document:
-                type: string
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
   responses:
     Unauthorized:
       description: Missing or invalid API key

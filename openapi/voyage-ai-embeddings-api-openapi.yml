@@ -46,6 +46,45 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        detail:
+          type: string
+    EmbeddingsResponse:
+      type: object
+      properties:
+        object:
+          type: string
+          examples:
+          - list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              object:
+                type: string
+                examples:
+                - embedding
+              index:
+                type: integer
+              embedding:
+                oneOf:
+                - type: array
+                  items:
+                    type: number
+                - type: string
+                  description: Base64-encoded vector when `encoding_format=base64`.
+        model:
+          type: string
+        usage:
+          $ref: '#/components/schemas/Usage'
+    Usage:
+      type: object
+      properties:
+        total_tokens:
+          type: integer
     EmbeddingsRequest:
       type: object
       required:
@@ -100,45 +139,6 @@ components:
           type: string
           enum:
           - base64
-    Usage:
-      type: object
-      properties:
-        total_tokens:
-          type: integer
-    Error:
-      type: object
-      properties:
-        detail:
-          type: string
-    EmbeddingsResponse:
-      type: object
-      properties:
-        object:
-          type: string
-          examples:
-          - list
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              object:
-                type: string
-                examples:
-                - embedding
-              index:
-                type: integer
-              embedding:
-                oneOf:
-                - type: array
-                  items:
-                    type: number
-                - type: string
-                  description: Base64-encoded vector when `encoding_format=base64`.
-        model:
-          type: string
-        usage:
-          $ref: '#/components/schemas/Usage'
   responses:
     Unauthorized:
       description: Missing or invalid API key
